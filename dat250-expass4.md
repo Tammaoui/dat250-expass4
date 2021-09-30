@@ -62,16 +62,17 @@ Code of interest is the following:
 
         put("/todo/:id", (req, res) -> {
             Todo toEdit = new Gson().fromJson(req.body(), Todo.class);
+            String id = req.params(":id");
             boolean hasEdited = false;
             for (int i = 0; i < dummyDb.size(); i++) {
-                if(dummyDb.get(i) == toEdit) {
+                if(dummyDb.get(i).id == Long.parseLong(id)) {
                     // Edit this one.
                     Todo current = dummyDb.get(i);
-                    if(toEdit.getDescription() != current.getDescription()) {
+                    if(toEdit.getDescription() != current.getDescription() && toEdit.getDescription() != null) {
                         current.setDescription(toEdit.getDescription());
                         hasEdited = true;
                     }
-                    if(toEdit.getSummary() != current.getSummary()) {
+                    if(toEdit.getSummary() != current.getSummary() && toEdit.getSummary() != null) {
                         current.setSummary(toEdit.getSummary());
                         hasEdited= true;
                     }
@@ -80,6 +81,8 @@ Code of interest is the following:
             }
             return "Todo not updated";
         });
+
+    }
 
 And the added code to Todo model:
 
