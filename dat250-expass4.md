@@ -17,6 +17,7 @@ Experiment 2:
 
 
 #### Link to code
+https://github.com/Tammaoui/dat250-expass4-code
 The code is in the Main class.
 
 Code of interest is the following:
